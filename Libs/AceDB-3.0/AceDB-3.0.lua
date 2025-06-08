@@ -53,6 +53,13 @@ local setmetatable, rawset, rawget = setmetatable, rawset, rawget
 -- WoW APIs
 local _G = _G
 
+-- MoP compatibility: Provide fallback for GetCurrentRegion if not defined
+if type(GetCurrentRegion) ~= "function" then
+    function GetCurrentRegion()
+        return 1
+    end
+end
+
 AceDB.db_registry = AceDB.db_registry or {}
 AceDB.frame = AceDB.frame or CreateFrame("Frame")
 
