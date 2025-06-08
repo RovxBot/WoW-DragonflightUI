@@ -20,7 +20,7 @@ local patch, cbuild do
 	local skips = securecall(function()
 		local r, _, an = {moon="haunted"}
 		cbuild, r.moon, _, an = select(4,GetBuildInfo()), nil, issecurevariable(r, "moon")
-		for m, v, clo, chi in (C_AddOns.GetAddOnMetadata(an, "X-TaintLess-DisableMitigations") or ""):gmatch("([%a_]+)=(%d+):?(%d*):?(%d*)") do
+		for m, v, clo, chi in (GetAddOnMetadata(an, "X-TaintLess-DisableMitigations") or ""):gmatch("([%a_]+)=(%d+):?(%d*):?(%d*)") do
 			if (clo == "" or cbuild >= clo+0) and (chi == "" or chi+0 >= cbuild) then
 				r[m] = v + 0
 			end

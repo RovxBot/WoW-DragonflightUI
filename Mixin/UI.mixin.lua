@@ -1,7 +1,5 @@
 ---@diagnostic disable: undefined-global
 ---@class DragonflightUI
----@diagnostic disable-next-line: assign-type-mismatch
-local DF = LibStub('AceAddon-3.0'):GetAddon('DragonflightUI')
 
 DragonflightUIMixin = {}
 

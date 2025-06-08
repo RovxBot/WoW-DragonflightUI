@@ -1,4 +1,3 @@
-local DF = LibStub('AceAddon-3.0'):GetAddon('DragonflightUI')
 local CreateColor = DFCreateColor;
 
 DFSettingsListMixin = CreateFromMixins(CallbackRegistryMixin);
@@ -91,6 +90,7 @@ function DFSettingsListMixin:OnLoad()
         elseif elementType == 'execute' then
             factory("DFSettingsListButton", Initializer);
         elseif elementType == 'select' then
+            local DF = LibStub('AceAddon-3.0'):GetAddon('DragonflightUI')
             if DF.Wrath and not DF.Cata then
                 factory("DFSettingsListDropdownContainer_Compat", Initializer);
             else

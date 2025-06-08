@@ -1,4 +1,3 @@
-require("API/Core.API")
 ---@class DragonflightUI
 ---@diagnostic disable-next-line: assign-type-mismatch
 local DF = LibStub('AceAddon-3.0'):GetAddon('DragonflightUI')

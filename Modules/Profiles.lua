@@ -16,7 +16,7 @@ end
 ApplyMixin(Module, DragonflightUIModulesMixin)
 
 local defaults = {profile = {scale = 1, general = {toCopy = 'Default', toDelete = 'Default'}}}
-Module:SetDefaults(defaults)
+-- Module:SetDefaults(defaults)
 
 local function getDefaultStr(key, sub)
     return Module:GetDefaultStr(key, sub)
