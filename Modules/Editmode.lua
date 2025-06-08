@@ -350,10 +350,15 @@ function Module:SetupMainmenuButton()
     local btn = configModule.EditModeButton
 
     btn:SetScript('OnClick', function()
-        -- 
+        --
         DF:Debug(self, 'editmode')
         Module:SetEditMode(not Module.IsEditMode)
     end)
+
+    -- Ensure button is added to the main menu
+    btn:SetParent(GameMenuFrame)
+    btn:SetPoint('TOP', GameMenuButtonHelp, 'BOTTOM', 0, -16)
+    btn:Show()
 end
 
 function Module:CombatHandler(preCombat)

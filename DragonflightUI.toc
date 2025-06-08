@@ -48,6 +48,7 @@ API.xml
 Config.lua
 Version.lua
 VIP.lua
+Modules\UI.lua
 
 # Localization
 LocalizationData.lua
@@ -101,7 +102,6 @@ Modules\UI.lua
 Modules\Unitframe.lua
 Modules\Utility.lua
 
-Mixin\Modules.mixin.lua
 Modules\Darkmode.lua
 
 #

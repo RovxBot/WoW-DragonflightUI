@@ -301,17 +301,25 @@ function Module:AddMainMenuButton()
     Module.UpdateMainMenuButtons = function()
         local btn = Module.MainMenuButton
         local editBtn = Module.EditModeButton
-
-        -- TODO:
-        -- 'Interface action failed because of an AddOn' when infight and clicking DF Menu button    
+    
+        -- Prevent actions during combat
+        if InCombatLockdown() then
+            Module:Print("Cannot update menu buttons during combat.")
+            return
+        end
+    
         local storeIsRestricted = IsTrialAccount();
         if (C_StorePublic.IsEnabled() and C_StorePublic.HasPurchaseableProducts() and not storeIsRestricted) then
             btn:SetPoint('TOP', GameMenuButtonStore, 'BOTTOM', 0, -16)
         else
             btn:SetPoint('TOP', GameMenuButtonHelp, 'BOTTOM', 0, -16)
         end
-
+    
         GameMenuButtonOptions:SetPoint('TOP', editBtn, 'BOTTOM', 0, -1)
+    
+        -- Ensure buttons are visible
+        btn:Show()
+        editBtn:Show()
     end
     Module.UpdateMainMenuButtons()
 

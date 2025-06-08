@@ -1,5 +1,10 @@
 DFColorMixin = {};
 
+-- Local rounding function for color byte conversion
+local function Round(x)
+    return math.floor(x + 0.5)
+end
+
 function DFCreateColor(r, g, b, a)
     -- print('DFCreateColor', r, g, b, a)
     local color = {};

@@ -39,7 +39,7 @@ local defaults = {
         hideCustomCond = ''
     }
 }
-Module:SetDefaults(defaults)
+-- Module:SetDefaults(defaults) -- Disabled: function not defined, caused nil error
 
 local function getDefaultStr(key, sub)
     return Module:GetDefaultStr(key, sub)
