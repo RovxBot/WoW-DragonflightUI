@@ -1,3 +1,4 @@
+require("API/Core.API")
 local DF = LibStub('AceAddon-3.0'):GetAddon('DragonflightUI')
 local L = LibStub("AceLocale-3.0"):GetLocale("DragonflightUI")
 ---@type API

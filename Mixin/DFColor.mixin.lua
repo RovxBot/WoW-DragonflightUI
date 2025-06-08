@@ -2,7 +2,11 @@ DFColorMixin = {};
 
 function DFCreateColor(r, g, b, a)
     -- print('DFCreateColor', r, g, b, a)
-    local color = CreateFromMixins(DFColorMixin);
+    local color = {};
+    for k, v in pairs(DFColorMixin) do
+        color[k] = v;
+    end
+    setmetatable(color, { __index = DFColorMixin });
     color:OnLoad(r, g, b, a);
     return color;
 end
