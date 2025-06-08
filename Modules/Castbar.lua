@@ -3,7 +3,13 @@ local L = LibStub("AceLocale-3.0"):GetLocale("DragonflightUI")
 local mName = 'Castbar'
 local Module = DF:NewModule(mName, 'AceConsole-3.0', 'AceHook-3.0')
 
-Mixin(Module, DragonflightUIModulesMixin)
+local function ApplyMixin(target, mixin)
+    for k, v in pairs(mixin) do
+        target[k] = v
+    end
+end
+
+ApplyMixin(Module, DragonflightUIModulesMixin)
 
 local defaults = {
     profile = {

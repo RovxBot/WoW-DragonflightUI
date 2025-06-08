@@ -313,7 +313,13 @@ end
 
 ------ target of target
 DragonflightUIEditModePreviewTargetOfTargetMixin = {}
-Mixin(DragonflightUIEditModePreviewTargetOfTargetMixin, DragonflightUIEditModePreviewTargetMixin)
+local function ApplyMixin(target, mixin)
+    for k, v in pairs(mixin) do
+        target[k] = v
+    end
+end
+
+ApplyMixin(DragonflightUIEditModePreviewTargetOfTargetMixin, DragonflightUIEditModePreviewTargetMixin)
 
 function DragonflightUIEditModePreviewTargetOfTargetMixin:OnLoad()
     -- print('~~~~~~~~~~~~DragonflightUIEditModePreviewRaidMixin:OnLoad()')
@@ -621,7 +627,13 @@ end
 
 ------ individual party member
 DragonflightUIEditModePreviewPartyMixin = {}
-Mixin(DragonflightUIEditModePreviewPartyMixin, DragonflightUIEditModePreviewTargetMixin)
+local function ApplyMixin(target, mixin)
+    for k, v in pairs(mixin) do
+        target[k] = v
+    end
+end
+
+ApplyMixin(DragonflightUIEditModePreviewPartyMixin, DragonflightUIEditModePreviewTargetMixin)
 
 function DragonflightUIEditModePreviewPartyMixin:OnLoad()
     -- print('~~~~~~~~~~~~DragonflightUIEditModePreviewPartyMixin:OnLoad()')
@@ -1155,7 +1167,13 @@ end
 
 ------ individual raid member
 DragonflightUIEditModePreviewRaidMixin = {}
-Mixin(DragonflightUIEditModePreviewRaidMixin, DragonflightUIEditModePreviewTargetMixin)
+local function ApplyMixin(target, mixin)
+    for k, v in pairs(mixin) do
+        target[k] = v
+    end
+end
+
+ApplyMixin(DragonflightUIEditModePreviewRaidMixin, DragonflightUIEditModePreviewTargetMixin)
 
 function DragonflightUIEditModePreviewRaidMixin:OnLoad()
     -- print('~~~~~~~~~~~~DragonflightUIEditModePreviewRaidMixin:OnLoad()')

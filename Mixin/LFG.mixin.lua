@@ -328,7 +328,13 @@ function DragonflightUILFGButtonMixin:Init()
         eye:SetParent(self)
         eye:SetSize(btnSize, btnSize)
         eye:SetPoint('CENTER')
-        Mixin(eye, DragonflightUIEyeTemplateMixin)
+        local function ApplyMixin(target, mixin)
+            for k, v in pairs(mixin) do
+                target[k] = v
+            end
+        end
+
+        ApplyMixin(eye, DragonflightUIEyeTemplateMixin)
         eye:OnLoad()
 
         -- eye:StartInitialAnimation()

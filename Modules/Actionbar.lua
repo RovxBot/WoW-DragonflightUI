@@ -7,7 +7,13 @@ local Module = DF:NewModule(mName, 'AceConsole-3.0', 'AceHook-3.0')
 local noop = function()
 end
 
-Mixin(Module, DragonflightUIModulesMixin)
+local function ApplyMixin(target, mixin)
+    for k, v in pairs(mixin) do
+        target[k] = v
+    end
+end
+
+ApplyMixin(Module, DragonflightUIModulesMixin)
 
 local defaults = {
     profile = {
@@ -2090,7 +2096,7 @@ function Module:SetupActionbarFrames()
 end
 
 function Module.AddStateUpdater()
-    Mixin(MainMenuBarBackpackButton, DragonflightUIStateHandlerMixin)
+    ApplyMixin(MainMenuBarBackpackButton, DragonflightUIStateHandlerMixin)
     MainMenuBarBackpackButton:InitStateHandler()
     -- MainMenuBarBackpackButton:SetHideFrame(CharacterBag0Slot, 2)
     -- MainMenuBarBackpackButton:SetHideFrame(CharacterBag1Slot, 3)
@@ -2107,7 +2113,7 @@ function Module.AddStateUpdater()
 
     ---
     local microFrame = Module.MicroFrame
-    Mixin(microFrame, DragonflightUIStateHandlerMixin)
+    ApplyMixin(microFrame, DragonflightUIStateHandlerMixin)
     microFrame:InitStateHandler()
 end
 

@@ -6,7 +6,13 @@ local mName = 'Utility'
 local Module = DF:NewModule(mName, 'AceConsole-3.0', 'AceHook-3.0')
 Module.Tmp = {}
 
-Mixin(Module, DragonflightUIModulesMixin)
+local function ApplyMixin(target, mixin)
+    for k, v in pairs(mixin) do
+        target[k] = v
+    end
+end
+
+ApplyMixin(Module, DragonflightUIModulesMixin)
 
 local defaults = {profile = {scale = 1, first = {friendsColor = true}}}
 Module:SetDefaults(defaults)

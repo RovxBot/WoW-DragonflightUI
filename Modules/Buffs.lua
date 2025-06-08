@@ -3,7 +3,13 @@ local L = LibStub("AceLocale-3.0"):GetLocale("DragonflightUI")
 local mName = 'Buffs'
 local Module = DF:NewModule(mName, 'AceConsole-3.0', 'AceHook-3.0')
 
-Mixin(Module, DragonflightUIModulesMixin)
+local function ApplyMixin(target, mixin)
+    for k, v in pairs(mixin) do
+        target[k] = v
+    end
+end
+
+ApplyMixin(Module, DragonflightUIModulesMixin)
 
 local defaults = {
     profile = {
@@ -358,7 +364,7 @@ end
 function Module.AddStateUpdater()
     ---
 
-    Mixin(Module.DFBuffFrame, DragonflightUIStateHandlerMixin)
+    ApplyMixin(Module.DFBuffFrame, DragonflightUIStateHandlerMixin)
     Module.DFBuffFrame:InitStateHandler()
 
     Module.DFBuffFrame.DFShower:ClearAllPoints()
@@ -371,7 +377,7 @@ function Module.AddStateUpdater()
 
     ---
 
-    Mixin(Module.DFDebuffFrame, DragonflightUIStateHandlerMixin)
+    ApplyMixin(Module.DFDebuffFrame, DragonflightUIStateHandlerMixin)
     Module.DFDebuffFrame:InitStateHandler(4, 4)
 end
 

@@ -10,6 +10,10 @@ local defaults = {profile = {bestnumber = 42}}
 local t = DF.API;
 
 function DF:OnInitialize()
+    -- Defensive: Ensure self is not nil (should always be called as a method)
+    if not self then
+        error("DragonflightUI:OnInitialize called with nil 'self'. Ensure this method is called with the colon (:) syntax and only by AceAddon-3.0.")
+    end
     -- Called when the addon is loaded
     self.db = LibStub('AceDB-3.0'):New('DragonflightUIDB', defaults, true)
     local db = self.db.profile
@@ -20,6 +24,10 @@ end
 
 function DF:OnEnable()
     -- Called when the addon is enabled
+    if not self then
+        error("DF:OnEnable() called with nil self. Ensure you use ':' syntax and let AceAddon-3.0 manage lifecycle callbacks.")
+        return
+    end
     -- self:Print('DragonflightUI enabled!')
     self:ShowStartMessage()
 end

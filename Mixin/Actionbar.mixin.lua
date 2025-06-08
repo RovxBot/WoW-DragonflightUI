@@ -28,7 +28,13 @@ function DragonflightUIActionbarMixin:Init()
 
     self:InitEditMode()
 
-    Mixin(self, DragonflightUIStateHandlerMixin)
+    local function ApplyMixin(target, mixin)
+        for k, v in pairs(mixin) do
+            target[k] = v
+        end
+    end
+
+    ApplyMixin(self, DragonflightUIStateHandlerMixin)
     self:InitStateHandler()
 
     self.stanceBar = false

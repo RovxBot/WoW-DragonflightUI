@@ -5,7 +5,13 @@ local rc = LibStub("LibRangeCheck-3.0")
 local mName = 'Unitframe'
 local Module = DF:NewModule(mName, 'AceConsole-3.0', 'AceHook-3.0')
 
-Mixin(Module, DragonflightUIModulesMixin)
+local function ApplyMixin(target, mixin)
+    for k, v in pairs(mixin) do
+        target[k] = v
+    end
+end
+
+ApplyMixin(Module, DragonflightUIModulesMixin)
 
 -- local db, getOptions
 
@@ -2001,27 +2007,27 @@ function Module.FixBlizzardBug()
 end
 
 function Module.AddStateUpdater()
-    Mixin(PlayerFrame, DragonflightUIStateHandlerMixin)
+    ApplyMixin(PlayerFrame, DragonflightUIStateHandlerMixin)
     PlayerFrame:InitStateHandler()
 
     PetFrame:SetParent(UIParent)
-    Mixin(PetFrame, DragonflightUIStateHandlerMixin)
+    ApplyMixin(PetFrame, DragonflightUIStateHandlerMixin)
     PetFrame:InitStateHandler()
     PetFrame:SetUnit('pet')
 
-    Mixin(TargetFrame, DragonflightUIStateHandlerMixin)
+    ApplyMixin(TargetFrame, DragonflightUIStateHandlerMixin)
     TargetFrame:InitStateHandler()
     TargetFrame:SetUnit('target')
 
     if DF.Wrath then
-        Mixin(FocusFrame, DragonflightUIStateHandlerMixin)
+        ApplyMixin(FocusFrame, DragonflightUIStateHandlerMixin)
         FocusFrame:InitStateHandler()
         FocusFrame:SetUnit('focus')
     end
 
     for i = 1, 4 do
         local pf = _G['PartyMemberFrame' .. i]
-        Mixin(pf, DragonflightUIStateHandlerMixin)
+        ApplyMixin(pf, DragonflightUIStateHandlerMixin)
         pf:InitStateHandler()
         pf:SetUnit('party' .. i)
     end

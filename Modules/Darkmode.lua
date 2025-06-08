@@ -3,7 +3,10 @@ local L = LibStub("AceLocale-3.0"):GetLocale("DragonflightUI")
 local mName = 'Darkmode'
 local Module = DF:NewModule(mName, 'AceConsole-3.0', 'AceHook-3.0')
 
-Mixin(Module, DragonflightUIModulesMixin)
+-- MoP compatibility: manually mixin DragonflightUIModulesMixin into Module
+for k, v in pairs(DragonflightUIModulesMixin) do
+    Module[k] = v
+end
 
 local CreateColor = DFCreateColor
 

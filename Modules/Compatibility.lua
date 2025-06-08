@@ -3,7 +3,12 @@ local L = LibStub("AceLocale-3.0"):GetLocale("DragonflightUI")
 local mName = 'Compatibility'
 local Module = DF:NewModule(mName, 'AceConsole-3.0', 'AceHook-3.0')
 
-Mixin(Module, DragonflightUIModulesMixin)
+-- MoP compatibility: manually mixin DragonflightUIModulesMixin into Module
+for k, v in pairs(DragonflightUIModulesMixin) do
+    if Module[k] == nil then
+        Module[k] = v
+    end
+end
 
 local defaults = {
     profile = {

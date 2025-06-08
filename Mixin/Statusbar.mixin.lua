@@ -9,7 +9,13 @@ function DragonflightUIXPBarMixin:OnLoad()
     self:SetupTooltip()
     -- self:Update()
 
-    Mixin(self, DragonflightUIStateHandlerMixin)
+    local function ApplyMixin(target, mixin)
+        for k, v in pairs(mixin) do
+            target[k] = v
+        end
+    end
+
+    ApplyMixin(self, DragonflightUIStateHandlerMixin)
     self:InitStateHandler()
 
     self:RegisterEvent('PLAYER_ENTERING_WORLD')
@@ -289,7 +295,13 @@ function DragonflightUIRepBarMixin:OnLoad()
     self:CreateBar()
     self:SetupTooltip()
     -- self:Update()
-    Mixin(self, DragonflightUIStateHandlerMixin)
+    local function ApplyMixin(target, mixin)
+        for k, v in pairs(mixin) do
+            target[k] = v
+        end
+    end
+
+    ApplyMixin(self, DragonflightUIStateHandlerMixin)
     self:InitStateHandler()
 
     self:RegisterEvent('PLAYER_ENTERING_WORLD')

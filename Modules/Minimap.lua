@@ -4,7 +4,13 @@ local mName = 'Minimap'
 local Module = DF:NewModule(mName, 'AceConsole-3.0', 'AceHook-3.0')
 Module.Tmp = {}
 
-Mixin(Module, DragonflightUIModulesMixin)
+local function ApplyMixin(target, mixin)
+    for k, v in pairs(mixin) do
+        target[k] = v
+    end
+end
+
+ApplyMixin(Module, DragonflightUIModulesMixin)
 
 local defaults = {
     profile = {
@@ -585,7 +591,7 @@ function Module.GetCoords(key)
 end
 
 function Module.AddStateUpdater()
-    Mixin(Minimap, DragonflightUIStateHandlerMixin)
+    ApplyMixin(Minimap, DragonflightUIStateHandlerMixin)
     Minimap:InitStateHandler()
     -- Minimap:SetHideFrame(frame.CalendarButton, 2)
 
@@ -1316,7 +1322,7 @@ end
 
 function Module:ChangeLFG()
     local lfg = CreateFrame('Button', 'DragonflightUILFGButtonFrame', Minimap)
-    Mixin(lfg, DragonflightUILFGButtonMixin)
+    ApplyMixin(lfg, DragonflightUILFGButtonMixin)
     lfg:Init()
     -- lfg:SetPoint('CENTER', MiniMapLFGFrame, 'CENTER', 0, 0)
     lfg:SetPoint('CENTER', Minimap, 'CENTER', -62.38, -41.63)

@@ -2,7 +2,13 @@ local DF = LibStub('AceAddon-3.0'):GetAddon('DragonflightUI')
 local mName = 'Chat'
 local Module = DF:NewModule(mName, 'AceConsole-3.0', 'AceHook-3.0')
 
-Mixin(Module, DragonflightUIModulesMixin)
+local function ApplyMixin(target, mixin)
+    for k, v in pairs(mixin) do
+        target[k] = v
+    end
+end
+
+ApplyMixin(Module, DragonflightUIModulesMixin)
 
 local defaults = {
     profile = {
@@ -239,7 +245,7 @@ end
 local frame = CreateFrame('FRAME', 'DragonflightUIChatFrame', UIParent)
 
 function Module.AddStateUpdater()
-    Mixin(ChatFrame1, DragonflightUIStateHandlerMixin)
+    ApplyMixin(ChatFrame1, DragonflightUIStateHandlerMixin)
     ChatFrame1:InitStateHandler()
     -- Minimap:SetHideFrame(frame.CalendarButton, 2)
 end

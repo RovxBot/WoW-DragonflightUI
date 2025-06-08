@@ -387,7 +387,13 @@ function DragonflightUIMixin:AddGuildbankSearch()
         -- _G['GuildBankTab' .. i].Button:UnregisterEvent('INVENTORY_SEARCH_UPDATE')
         local tab = _G['GuildBankTab' .. i]
         tab.Button:SetID(i)
-        Mixin(tab.Button, DragonglightUIGuildBankSearchMixin)
+        local function ApplyMixin(target, mixin)
+            for k, v in pairs(mixin) do
+                target[k] = v
+            end
+        end
+
+        ApplyMixin(tab.Button, DragonglightUIGuildBankSearchMixin)
         hooksecurefunc(tab, 'OnClick', function()
             tab.Button:UpdateFiltered()
         end)
