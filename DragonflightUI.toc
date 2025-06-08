@@ -101,6 +101,7 @@ Modules\UI.lua
 Modules\Unitframe.lua
 Modules\Utility.lua
 
+Mixin\Modules.mixin.lua
 Modules\Darkmode.lua
 
 #

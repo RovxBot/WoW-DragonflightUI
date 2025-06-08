@@ -4,8 +4,12 @@ local mName = 'Darkmode'
 local Module = DF:NewModule(mName, 'AceConsole-3.0', 'AceHook-3.0')
 
 -- MoP compatibility: manually mixin DragonflightUIModulesMixin into Module
-for k, v in pairs(DragonflightUIModulesMixin) do
-    Module[k] = v
+if DragonflightUIModulesMixin then
+    for k, v in pairs(DragonflightUIModulesMixin) do
+        Module[k] = v
+    end
+else
+    print("DragonflightUI: Warning - DragonflightUIModulesMixin is nil, skipping mixin application in Darkmode module.")
 end
 
 local CreateColor = DFCreateColor

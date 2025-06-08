@@ -217,7 +217,7 @@ local defaults = {
         }
     }
 }
-Module:SetDefaults(defaults)
+-- Module:SetDefaults(defaults)
 
 local defaultsPROTO = {
     classcolor = false,

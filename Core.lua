@@ -16,7 +16,7 @@ function DF:OnInitialize()
     local db = self.db.profile
     self:SetupOptions()
     self:RegisterSlashCommands()
-    self:InitVersionCheck()
+    -- self:InitVersionCheck() -- Disabled: method not implemented
 end
 
 function DF:OnEnable()

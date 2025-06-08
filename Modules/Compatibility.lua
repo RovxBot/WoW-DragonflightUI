@@ -33,7 +33,7 @@ local defaults = {
         }
     }
 }
-Module:SetDefaults(defaults)
+-- Module:SetDefaults(defaults)
 
 local function getDefaultStr(key, sub, extra)
     return Module:GetDefaultStr(key, sub, extra)
