@@ -284,7 +284,6 @@ function DragonflightUITalentsPanelMixin:Init(id)
             DragonflightUITalentsPanelMixin:ButtonOnClick(self, button)
         end)
 
-        button:RegisterEvent("PREVIEW_TALENT_POINTS_CHANGED");
         button:RegisterEvent("PLAYER_TALENT_UPDATE");
         button:RegisterEvent("PET_TALENT_UPDATE");
     end
@@ -1025,7 +1024,6 @@ function DragonflightUITalentsFrameMixin:OnLoad()
     end
 
     -- self:RegisterEvent("ADDON_LOADED");
-    self:RegisterEvent("PREVIEW_TALENT_POINTS_CHANGED");
     -- self:RegisterEvent("PREVIEW_PET_TALENT_POINTS_CHANGED");
     -- self:RegisterEvent("UNIT_PET");
     -- self:RegisterEvent("UNIT_MODEL_CHANGED");

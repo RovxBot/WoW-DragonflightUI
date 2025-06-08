@@ -1,7 +1,7 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 UI_shared.xsd">
 	<Script file="Mixin/ProfessionSpellbook.mixin.lua" />
-	<Frame name="DFSpellBookProfessionFrame" mixin="DragonFlightUIProfessionSpellbookMixin" inherits="SecureFrameTemplate" virtual="true">
+	<Frame name="DFSpellBookProfessionFrame" inherits="Frame" virtual="true">
 		<!--
 		<Anchors>
 		<Anchor point="TOPLEFT" relativeTo="SpellBookFrame" relativePoint="TOPLEFT" />
@@ -143,7 +143,7 @@ UI_shared.xsd">
 					<Anchor point="TOPLEFT" relativeTo="$parentRank" relativePoint="BOTTOMLEFT" x="14" y="-5" />
 				</Anchors>
 			</StatusBar>
-			<Button parentKey="UnlearnButton" inherits="ResizeLayoutFrame" mixin="DragonflightUIProfessionsUnlearnButtonMixin" scale=".7">
+			<Button parentKey="UnlearnButton" inherits="Frame" scale=".7">
 				<Anchors>
 					<Anchor point="RIGHT" relativeTo="$parentStatusBar" relativePoint="LEFT" x="-30" y="1" />
 				</Anchors>
@@ -231,7 +231,7 @@ UI_shared.xsd">
 			</Layer>
 		</Layers>
 	</Frame>
-	<CheckButton name="DFProfessionButtonTemplate" inherits="SecureActionButtonTemplate" mixin="DragonflightUISpellButtonMixin" virtual="true">
+	<CheckButton name="DFProfessionButtonTemplate" inherits="SecureActionButtonTemplate" virtual="true">
 		<Size x="40" y="40" />
 		<Layers>
 			<Layer level="BORDER">

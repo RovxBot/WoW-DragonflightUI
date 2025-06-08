@@ -27,6 +27,12 @@ local CTL_VERSION = 24
 
 local _G = _G
 
+-- MoP 5.4.8 compatibility
+local function IsMoP()
+    local _, _, _, tocversion = GetBuildInfo()
+    return tocversion and tocversion >= 50000 and tocversion < 60000
+end
+
 if _G.ChatThrottleLib then
 	if _G.ChatThrottleLib.version >= CTL_VERSION then
 		-- There's already a newer (or same) version loaded. Buh-bye.
@@ -213,7 +219,7 @@ function ChatThrottleLib:Init()
 			return ChatThrottleLib.Hook_SendChatMessage(...)
 		end)
 		--SendAddonMessage
-		if _G.C_ChatInfo then
+		if not IsMoP() and _G.C_ChatInfo then
 			hooksecurefunc(_G.C_ChatInfo, "SendAddonMessage", function(...)
 				return ChatThrottleLib.Hook_SendAddonMessage(...)
 			end)
@@ -484,7 +490,7 @@ function ChatThrottleLib:SendAddonMessage(prio, prefix, text, chattype, target, 
 	if not self.bQueueing and nSize < self:UpdateAvail() then
 		self.avail = self.avail - nSize
 		bMyTraffic = true
-		if _G.C_ChatInfo then
+		if not IsMoP() and _G.C_ChatInfo then
 			_G.C_ChatInfo.SendAddonMessage(prefix, text, chattype, target)
 		else
 			_G.SendAddonMessage(prefix, text, chattype, target)
@@ -500,7 +506,11 @@ function ChatThrottleLib:SendAddonMessage(prio, prefix, text, chattype, target, 
 
 	-- Message needs to be queued
 	local msg = NewMsg()
-	msg.f = _G.C_ChatInfo and _G.C_ChatInfo.SendAddonMessage or _G.SendAddonMessage
+	if not IsMoP() and _G.C_ChatInfo and _G.C_ChatInfo.SendAddonMessage then
+		msg.f = _G.C_ChatInfo.SendAddonMessage
+	else
+		msg.f = _G.SendAddonMessage
+	end
 	msg[1] = prefix
 	msg[2] = text
 	msg[3] = chattype

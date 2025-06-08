@@ -169,7 +169,6 @@ function DragonflightUISidebarTabMixin:OnLoad()
 
     if self:GetID() == 1 then
         self:RegisterEvent("UNIT_PORTRAIT_UPDATE");
-        self:RegisterEvent("PORTRAITS_UPDATED");
         self:RegisterEvent("PLAYER_ENTERING_WORLD");
 
         local tcoords = PAPERDOLL_SIDEBARS[self:GetID()].texCoords;

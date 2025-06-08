@@ -73,8 +73,17 @@ function DF.Compatibility:WhatsTraining()
             second:SetTexture(base .. 'Spellbook-Page-2')
             second:SetPoint('TOPLEFT', first, 'TOPRIGHT', 0, 0)
 
+            -- MoP compatibility: use correct background asset
+            local function IsMoP()
+                local _, _, _, tocversion = GetBuildInfo()
+                return tocversion and tocversion >= 50000 and tocversion < 60000
+            end
             local bg = frame:CreateTexture('DragonflightUIWhatsTrainingCompatibilitySpellBookBG', 'BACKGROUND')
-            bg:SetTexture(base .. 'UI-Background-RockCata')
+            if IsMoP() then
+                bg:SetTexture(base .. 'UI-Background-Rock')
+            else
+                bg:SetTexture(base .. 'UI-Background-RockCata')
+            end
             bg:SetPoint('TOPLEFT', frame, 'TOPLEFT', 2, -21)
             bg:SetPoint('BOTTOMRIGHT', frame, 'BOTTOMRIGHT', -2, 2)
             bg:SetDrawLayer('BACKGROUND', -6)

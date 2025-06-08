@@ -5,7 +5,7 @@ UI_shared.xsd">
 	<Script file="Mixin/ConfigCategoryButton.mixin.lua" />
 	<Script file="Mixin/ConfigCategory.mixin.lua" />
 	<Script file="Mixin/SettingsList.mixin.lua" />
-	<Frame name="DragonflightUIConfigFrameTemplate" mixin="DragonFlightUIConfigMixin" inherits="SettingsFrameTemplate" toplevel="true" hidden="true" movable="true" enableMouse="true" resizable="true" frameStrata="HIGH" virtual="true">
+	<Frame name="DragonflightUIConfigFrameTemplate" inherits="ButtonFrameTemplate" toplevel="true" hidden="true" movable="true" enableMouse="true" resizable="true" frameStrata="HIGH" virtual="true">
 		<Size x="920" y="724" />
 		<Anchors>
 			<Anchor point="TOPRIGHT" relativePoint="CENTER" x="460" y="362" />
@@ -84,7 +84,7 @@ UI_shared.xsd">
 		</Scripts>
 	</Frame>
 	<!-- Blizzard_CategoryList.xml -->
-	<Frame name="SettingsCategoryListTemplateDF" mixin="SettingsCategoryListMixinDF" virtual="true">
+	<Frame name="SettingsCategoryListTemplateDF" virtual="true">
 		<Frames>
 			<Frame parentKey="ScrollBox" inherits="WowScrollBoxList">
 				<Anchors>
@@ -104,7 +104,7 @@ UI_shared.xsd">
 			<OnLoad inherit="prepend" method="OnLoad" />
 		</Scripts>
 	</Frame>
-	<Frame name="SettingsCategoryListHeaderTemplateDF" mixin="DragonFlightUIConfigCategoryMixin" virtual="true">
+	<Frame name="SettingsCategoryListHeaderTemplateDF" virtual="true">
 		<Size x="175" y="30" />
 		<Layers>
 			<Layer level="ARTWORK">
@@ -126,7 +126,7 @@ UI_shared.xsd">
 			<OnLoad inherit="prepend" method="OnLoad" />
 		</Scripts>
 	</Frame>
-	<Button name="SettingsCategoryListButtonTemplateDF" mixin="DragonFlightUIConfigCategoryButtonMixin" virtual="true">
+	<Button name="SettingsCategoryListButtonTemplateDF" virtual="true">
 		<Size x="175" y="20" />
 		<Frames>
 			<EventButton parentKey="Toggle" hidden="true">

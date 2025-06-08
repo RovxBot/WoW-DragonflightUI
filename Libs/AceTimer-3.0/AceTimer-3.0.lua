@@ -27,7 +27,31 @@ local activeTimers = AceTimer.activeTimers -- Upvalue our private data
 -- Lua APIs
 local type, unpack, next, error, select = type, unpack, next, error, select
 -- WoW APIs
-local GetTime, C_TimerAfter = GetTime, C_Timer.After
+local GetTime = GetTime
+
+-- MoP 5.4.8 compatibility: provide C_TimerAfter fallback
+local function IsMoP()
+    local _, _, _, tocversion = GetBuildInfo()
+    return tocversion and tocversion >= 50000 and tocversion < 60000
+end
+
+local C_TimerAfter
+if IsMoP() then
+    -- Frame-based timer fallback for MoP
+    C_TimerAfter = function(delay, func)
+        local frame = CreateFrame("Frame")
+        local start = GetTime()
+        frame:SetScript("OnUpdate", function(self)
+            if GetTime() - start >= delay then
+                self:SetScript("OnUpdate", nil)
+                func()
+                frame = nil
+            end
+        end)
+    end
+else
+    C_TimerAfter = C_Timer and C_Timer.After
+end
 
 local function new(self, loop, func, delay, ...)
 	if delay < 0.01 then

@@ -44,6 +44,12 @@ local MINOR_VERSION = 26
 local lib, oldminor = LibStub:NewLibrary(MAJOR_VERSION, MINOR_VERSION)
 if not lib then return end
 
+-- MoP 5.4.8 compatibility
+local function IsMoP()
+    local _, _, _, tocversion = GetBuildInfo()
+    return tocversion and tocversion >= 50000 and tocversion < 60000
+end
+
 local isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 local isEra = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
 local isCata = WOW_PROJECT_ID == WOW_PROJECT_CATACLYSM_CLASSIC
@@ -64,8 +70,20 @@ local tinsert = tinsert
 local tremove = tremove
 local tostring = tostring
 local setmetatable = setmetatable
-local BOOKTYPE_SPELL = BOOKTYPE_SPELL or Enum.SpellBookSpellBank.Player
-local GetSpellBookItemName = GetSpellBookItemName or C_SpellBook.GetSpellBookItemName
+local BOOKTYPE_SPELL
+if IsMoP() then
+    BOOKTYPE_SPELL = BOOKTYPE_SPELL or "spell"
+else
+    BOOKTYPE_SPELL = BOOKTYPE_SPELL or (Enum and Enum.SpellBookSpellBank and Enum.SpellBookSpellBank.Player or "spell")
+end
+
+local GetSpellBookItemName
+if IsMoP() then
+    GetSpellBookItemName = _G.GetSpellBookItemName
+else
+    GetSpellBookItemName = _G.GetSpellBookItemName or (C_SpellBook and C_SpellBook.GetSpellBookItemName)
+end
+
 local C_Item = C_Item
 local UnitCanAttack = UnitCanAttack
 local UnitCanAssist = UnitCanAssist
@@ -74,24 +92,34 @@ local UnitIsUnit = UnitIsUnit
 local UnitGUID = UnitGUID
 local UnitIsDeadOrGhost = UnitIsDeadOrGhost
 local CheckInteractDistance = CheckInteractDistance
-local IsSpellBookItemInRange = _G.IsSpellInRange or function(index, spellBank, unit)
-    local result = C_Spell.IsSpellInRange(index, unit)
-    if result == true then
-        return 1
-    elseif result == false then
-        return 0
+local IsSpellBookItemInRange
+if IsMoP() then
+    IsSpellBookItemInRange = _G.IsSpellInRange
+else
+    IsSpellBookItemInRange = _G.IsSpellInRange or function(index, spellBank, unit)
+        local result = C_Spell and C_Spell.IsSpellInRange and C_Spell.IsSpellInRange(index, unit)
+        if result == true then
+            return 1
+        elseif result == false then
+            return 0
+        end
+        return nil
     end
-    return nil
 end
 local spellTypes = {"SPELL", "FUTURESPELL", "PETACTION", "FLYOUT"}
-local GetSpellBookItemInfo = _G.GetSpellBookItemInfo or function(index, spellBank)
-    if type(spellBank) == "string" then
-        spellBank = (spellBank == "spell") and Enum.SpellBookSpellBank.Player or Enum.SpellBookSpellBank.Pet;
-    end
-    local info = C_SpellBook.GetSpellBookItemInfo(index, spellBank)
-    -- map spell-type
-    if info and spellTypes[info.itemType or 0] then
-        return spellTypes[info.itemType or 0] or "None", info.spellID, info
+local GetSpellBookItemInfo
+if IsMoP() then
+    GetSpellBookItemInfo = _G.GetSpellBookItemInfo
+else
+    GetSpellBookItemInfo = _G.GetSpellBookItemInfo or function(index, spellBank)
+        if type(spellBank) == "string" then
+            spellBank = (spellBank == "spell") and (Enum and Enum.SpellBookSpellBank and Enum.SpellBookSpellBank.Player or "spell") or (Enum and Enum.SpellBookSpellBank and Enum.SpellBookSpellBank.Pet or "pet");
+        end
+        local info = C_SpellBook and C_SpellBook.GetSpellBookItemInfo and C_SpellBook.GetSpellBookItemInfo(index, spellBank)
+        -- map spell-type
+        if info and spellTypes[info.itemType or 0] then
+            return spellTypes[info.itemType or 0] or "None", info.spellID, info
+        end
     end
 end
 local UnitClass = UnitClass

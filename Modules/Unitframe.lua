@@ -2287,7 +2287,6 @@ function Module:AddEditMode()
             initRaid()
         else
             local waitFrame = CreateFrame('Frame')
-            waitFrame:RegisterEvent("COMPACT_UNIT_FRAME_PROFILES_LOADED")
             waitFrame:RegisterEvent("VARIABLES_LOADED")
             waitFrame:SetScript("OnEvent", function(waitFrame, event, arg1)
                 --
@@ -5187,8 +5186,6 @@ function frame:OnEvent(event, arg1)
         Module.SetPlayerBiggerHealthbar(Module.db.profile.player.biggerHealthbar)
     elseif event == 'UNIT_PORTRAIT_UPDATE' then
         Module.RefreshPortrait()
-    elseif event == 'PORTRAITS_UPDATED' then
-        Module.RefreshPortrait()
     elseif event == 'CVAR_UPDATE' then
         if arg1 == 'statusText' or arg1 == 'statusTextDisplay' then
             for i = 1, 4 do
@@ -5196,8 +5193,6 @@ function frame:OnEvent(event, arg1)
                 Module.UpdatePartyManaBar(i)
             end
         end
-    elseif event == 'SETTINGS_LOADED' then
-        Module:RefreshOptionScreens()
     end
 end
 
@@ -5402,10 +5397,7 @@ function Module:Era()
     frame:RegisterEvent('ZONE_CHANGED_INDOORS')
     frame:RegisterEvent('ZONE_CHANGED_NEW_AREA')
 
-    frame:RegisterEvent('PORTRAITS_UPDATED')
-
     frame:RegisterEvent('CVAR_UPDATE')
-    frame:RegisterEvent('SETTINGS_LOADED')
 
     Module.HookRestFunctions()
     Module.HookVertexColor()
@@ -5450,10 +5442,7 @@ function Module:Wrath()
     frame:RegisterEvent('ZONE_CHANGED_INDOORS')
     frame:RegisterEvent('ZONE_CHANGED_NEW_AREA')
 
-    frame:RegisterEvent('PORTRAITS_UPDATED')
-
     frame:RegisterEvent('CVAR_UPDATE')
-    frame:RegisterEvent('SETTINGS_LOADED')
 
     Module.HookRestFunctions()
     Module.HookVertexColor()

@@ -3074,9 +3074,6 @@ function frame:OnEvent(event, arg1)
     -- print('event', event)
     if event == 'PLAYER_ENTERING_WORLD' then
         -- ActivateAllActionbars() 
-    elseif event == 'SETTINGS_LOADED' then
-        -- print('SETTINGS_LOADED')
-        Module:CheckActionbarSettingsCVars()
     elseif event == 'PLAYER_REGEN_ENABLED' then
         --
         -- print('PLAYER_REGEN_ENABLED', self.ShouldUpdate)
@@ -3091,7 +3088,6 @@ function frame:OnEvent(event, arg1)
 end
 frame:SetScript('OnEvent', frame.OnEvent)
 frame:RegisterEvent('PLAYER_REGEN_ENABLED')
-frame:RegisterEvent('SETTINGS_LOADED')
 
 local atlasActionbar = {
     ['UI-HUD-ActionBar-Gryphon-Left'] = {200, 188, 0.001953125, 0.697265625, 0.10205078125, 0.26513671875, false, false},

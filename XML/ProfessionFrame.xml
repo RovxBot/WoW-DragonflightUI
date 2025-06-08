@@ -1,7 +1,7 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 UI_shared.xsd">
 	<Script file="Mixin/ProfessionFrame.mixin.lua" />
-	<Frame name="DFProfessionFrameTemplate" mixin="DFProfessionMixin" inherits="SettingsFrameTemplate" toplevel="true" hidden="true" movable="true" enableMouse="true" resizable="true" frameStrata="HIGH" virtual="true">
+	<Frame name="DFProfessionFrameTemplate" inherits="ButtonFrameTemplate" toplevel="true" hidden="true" movable="true" enableMouse="true" resizable="true" frameStrata="HIGH" virtual="true">
 		<Size x="942" y="658" />
 		<Anchors>
 			<!-- <Anchor point="TOPRIGHT" relativePoint="CENTER" x="460" y="362" /> -->
@@ -200,7 +200,7 @@ UI_shared.xsd">
 			<OnHide method="OnHide" />
 		</Scripts>
 	</Frame>
-	<Frame name="ProfessionsRecipeSchematicFormTemplate" mixin="DFProfessionFrameRecipeSchematicFormMixin" hyperlinksEnabled="true" virtual="true">
+	<Frame name="ProfessionsRecipeSchematicFormTemplate" hyperlinksEnabled="true" virtual="true">
 		<Frames>
 			<Frame parentKey="BackgroundNineSlice" useParentLevel="true" inherits="InsetFrameTemplate">
 				<Anchors>
@@ -220,7 +220,7 @@ UI_shared.xsd">
 			-->
 		</Scripts>
 	</Frame>
-	<Frame name="DFProfessionFrameRecipeListTemplate" mixin="DFProfessionFrameRecipeListMixin" virtual="true">
+	<Frame name="DFProfessionFrameRecipeListTemplate" virtual="true">
 		<Size x="300" y="505" />
 		<KeyValues>
 			<KeyValue key="hideCraftableCount" value="false" type="boolean" />
@@ -307,7 +307,7 @@ UI_shared.xsd">
 			<OnEvent method="OnEvent" />
 		</Scripts>
 	</Frame>
-	<EditBox name="DFProfessionFrameSearchBoxTemplate" inherits="SearchBoxTemplate" mixin="DFProfessionFrameSearchBoxMixin" autoFocus="false" virtual="true">
+	<EditBox name="DFProfessionFrameSearchBoxTemplate" inherits="SearchBoxTemplate" autoFocus="false" virtual="true">
 		<Scripts>
 			<OnHide method="OnHide" />
 			<OnTextChanged method="OnTextChanged" />
@@ -315,7 +315,7 @@ UI_shared.xsd">
 		</Scripts>
 	</EditBox>
 	<!--
-	<Frame name="ProfessionsRecipeSchematicFormTemplate" mixin="DFProfessionsRecipeSchematicFormMixin" hyperlinksEnabled="true" virtual="true">
+	<Frame name="ProfessionsRecipeSchematicFormTemplate" hyperlinksEnabled="true" virtual="true">
 	<Frames>
 	<Frame parentKey="BackgroundNineSlice" useParentLevel="true" inherits="InsetFrameTemplate">
 	<Anchors>
@@ -336,7 +336,7 @@ UI_shared.xsd">
 	</Scripts>
 	</Frame>
 	-->
-	<Button name="DFProfessionFrameRecipeCategoryTemplate" mixin="DFProfessionFrameRecipeCategoryMixin" virtual="true">
+	<Button name="DFProfessionFrameRecipeCategoryTemplate" virtual="true">
 		<Size y="25" />
 		<Layers>
 			<Layer level="OVERLAY" textureSubLevel="1">
@@ -393,7 +393,7 @@ UI_shared.xsd">
 			<OnLeave method="OnLeave" />
 		</Scripts>
 	</Button>
-	<Button name="DFProfessionFrameRecipeTemplate" mixin="DFProfessionFrameRecipeMixin" registerForClicks="RightButtonUp, LeftButtonUp" virtual="true">
+	<Button name="DFProfessionFrameRecipeTemplate" registerForClicks="RightButtonUp, LeftButtonUp" virtual="true">
 		<Size y="20" />
 		<Frames>
 			<Button parentKey="SkillUps">

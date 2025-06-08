@@ -39,7 +39,7 @@
 			<Anchor point="TOPLEFT" />
 		</Anchors>
 	</Texture>
-	<Frame name="DFPlayerTalentFramePanelTemplate" inherits="InsetFrameTemplate2" mixin="DragonflightUITalentsPanelMixin" virtual="true">
+	<Frame name="DFPlayerTalentFramePanelTemplate" inherits="InsetFrameTemplate" virtual="true">
 		<Size>
 			<AbsDimension x="208" y="376" />
 		</Size>
@@ -546,7 +546,7 @@
 			<OnEvent method="OnEvent" />
 		</Scripts>
 	</Frame>
-	<Frame name="DFPlayerTalentFrameTemplate" virtual="true" mixin="DragonflightUITalentsFrameMixin">
+	<Frame name="DFPlayerTalentFrameTemplate" virtual="true">
 		<Scripts>
 			<OnLoad method="OnLoad" />
 			<OnEvent method="OnEvent" />
@@ -562,7 +562,7 @@
 			<OnLeave function="GameTooltip_Hide" />
 		</Scripts>
 	</CheckButton>
-	<Button name="DFPlayerTalentFrameResetButton" mixin="DragonflightUIPlayerSpecPreviewResetMixin" inherits="UIPanelButtonTemplate" text="RESET" virtual="true">
+	<Button name="DFPlayerTalentFrameResetButton" inherits="UIPanelButtonTemplate" text="RESET" virtual="true">
 		<Size x="80" y="22" />
 		<Scripts>
 			<!--
@@ -575,7 +575,7 @@
 			<OnClick method="OnClick" />
 		</Scripts>
 	</Button>
-	<Button name="DFPlayerTalentFrameLearnButton" mixin="DragonflightUIPlayerSpecPreviewLearnMixin" inherits="UIPanelButtonTemplate" text="LEARN" virtual="true">
+	<Button name="DFPlayerTalentFrameLearnButton" inherits="UIPanelButtonTemplate" text="LEARN" virtual="true">
 		<Size x="80" y="22" />
 		<Scripts>
 			<!--
@@ -588,7 +588,7 @@
 			<OnClick method="OnClick" />
 		</Scripts>
 	</Button>
-	<Button name="DFPlayerTalentFrameActivateButton" mixin="DragonflightUIPlayerSpecActivateMixin" inherits="UIPanelButtonTemplate" text="TALENT_SPEC_ACTIVATE" virtual="true">
+	<Button name="DFPlayerTalentFrameActivateButton" inherits="UIPanelButtonTemplate" text="TALENT_SPEC_ACTIVATE" virtual="true">
 		<Size x="80" y="22" />
 		<Scripts>
 			<OnLoad method="OnLoad" />
@@ -598,7 +598,7 @@
 			<OnEvent method="OnEvent" />
 		</Scripts>
 	</Button>
-	<CheckButton name="DFPlayerSpecTabTemplate" mixin="DragonflightUIPlayerSpecMixin" virtual="true" hidden="false">
+	<CheckButton name="DFPlayerSpecTabTemplate" virtual="true" hidden="false">
 		<Size x="32" y="32" />
 		<Layers>
 			<Layer level="BACKGROUND">

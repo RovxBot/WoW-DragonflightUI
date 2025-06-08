@@ -2,23 +2,23 @@
 	<Script file="Mixin/Actionbar.mixin.lua" />
 	<Script file="Mixin/Micromenu.mixin.lua" />
 	<Script file="Mixin/Statusbar.mixin.lua" />
-	<Frame name="DragonflightUIActionbarFrameTemplate" mixin="DragonflightUIActionbarMixin" inherits="SecureFrameTemplate,SecureHandlerEnterLeaveTemplate" virtual="true">
+	<Frame name="DragonflightUIActionbarFrameTemplate" inherits="SecureHandlerStateTemplate" virtual="true">
 	</Frame>
-	<Frame name="DragonflightUIStancebarFrameTemplate" mixin="DragonflightUIStancebarMixin" inherits="SecureFrameTemplate,SecureHandlerEnterLeaveTemplate" virtual="true">
+	<Frame name="DragonflightUIStancebarFrameTemplate" inherits="SecureHandlerStateTemplate" virtual="true">
 	</Frame>
-	<Frame name="DragonflightUIPetbarFrameTemplate" mixin="DragonflightUIPetbarMixin" virtual="true">
+	<Frame name="DragonflightUIPetbarFrameTemplate" virtual="true">
 	</Frame>
-	<Frame name="DragonflightUIXPBarTemplate" mixin="DragonflightUIXPBarMixin" virtual="true">
+	<Frame name="DragonflightUIXPBarTemplate" virtual="true">
 		<Scripts>
 			<OnLoad method="OnLoad" />
 		</Scripts>
 	</Frame>
-	<Frame name="DragonflightUIRepBarTemplate" mixin="DragonflightUIRepBarMixin" virtual="true">
+	<Frame name="DragonflightUIRepBarTemplate" virtual="true">
 		<Scripts>
 			<OnLoad method="OnLoad" />
 		</Scripts>
 	</Frame>
-	<Frame name="DragonflightUIFPSTemplate" mixin="DragonflightUIFPSMixin" virtual="true">
+	<Frame name="DragonflightUIFPSTemplate" virtual="true">
 		<Scripts>
 			<OnLoad method="OnLoad" />
 			<OnUpdate method="OnUpdate" />
@@ -26,7 +26,7 @@
 	</Frame>
 	<Frame name="DragonflightUIDecoFrameTemplate" inherits="ButtonFrameTemplate" virtual="true">
 	</Frame>
-	<Frame name="DragonflightUIMicroMenuFrameTemplate" mixin="DragonflightUIMicroMenuMixin" inherits="SecureFrameTemplate,SecureHandlerEnterLeaveTemplate" virtual="true">
+	<Frame name="DragonflightUIMicroMenuFrameTemplate" inherits="SecureHandlerStateTemplate" virtual="true">
 		<Scripts>
 			<OnLoad method="OnLoad" />
 		</Scripts>

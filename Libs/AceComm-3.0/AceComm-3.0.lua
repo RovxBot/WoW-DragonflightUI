@@ -35,6 +35,12 @@ local error, assert = error, assert
 -- WoW APIs
 local Ambiguate = Ambiguate
 
+-- MoP 5.4.8 compatibility
+local function IsMoP()
+    local _, _, _, tocversion = GetBuildInfo()
+    return tocversion and tocversion >= 50000 and tocversion < 60000
+end
+
 AceComm.embeds = AceComm.embeds or {}
 
 -- for my sanity and yours, let's give the message type bytes some names
@@ -61,7 +67,7 @@ function AceComm:RegisterComm(prefix, method)
 	if #prefix > 16 then -- TODO: 15?
 		error("AceComm:RegisterComm(prefix,method): prefix length is limited to 16 characters")
 	end
-	if C_ChatInfo then
+	if not IsMoP() and C_ChatInfo then
 		C_ChatInfo.RegisterAddonMessagePrefix(prefix)
 	else
 		RegisterAddonMessagePrefix(prefix)
