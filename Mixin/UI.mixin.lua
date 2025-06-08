@@ -388,6 +388,10 @@ function DragonflightUIMixin:AddGuildbankSearch()
         local tab = _G['GuildBankTab' .. i]
         tab.Button:SetID(i)
         local function ApplyMixin(target, mixin)
+            if mixin == nil then
+                print("DragonflightUI ERROR: Attempted to ApplyMixin with a nil mixin table. Using empty table instead.")
+                mixin = {}
+            end
             for k, v in pairs(mixin) do
                 target[k] = v
             end

@@ -39,6 +39,10 @@ Libs\TaintLess\TaintLess.xml
 
 Mixin\DFColor.mixin.lua
 
+Mixin\Modules.mixin.lua
+Mixin\DFSettingsList.mixin.lua
+Mixin\UI.mixin.lua
+
 Core.lua
 API.xml
 Config.lua

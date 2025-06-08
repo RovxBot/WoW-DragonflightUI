@@ -10,6 +10,10 @@ function DragonflightUIXPBarMixin:OnLoad()
     -- self:Update()
 
     local function ApplyMixin(target, mixin)
+        if mixin == nil then
+            print("DragonflightUI ERROR: Attempted to ApplyMixin with a nil mixin table. Using empty table instead.")
+            mixin = {}
+        end
         for k, v in pairs(mixin) do
             target[k] = v
         end
@@ -296,6 +300,10 @@ function DragonflightUIRepBarMixin:OnLoad()
     self:SetupTooltip()
     -- self:Update()
     local function ApplyMixin(target, mixin)
+        if mixin == nil then
+            print("DragonflightUI ERROR: Attempted to ApplyMixin with a nil mixin table. Using empty table instead.")
+            mixin = {}
+        end
         for k, v in pairs(mixin) do
             target[k] = v
         end

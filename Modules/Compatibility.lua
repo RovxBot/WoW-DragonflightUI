@@ -4,6 +4,12 @@ local mName = 'Compatibility'
 local Module = DF:NewModule(mName, 'AceConsole-3.0', 'AceHook-3.0')
 
 -- MoP compatibility: manually mixin DragonflightUIModulesMixin into Module
+if not DragonflightUIModulesMixin then
+    DragonflightUIModulesMixin = {}
+    if print then
+        print("DragonflightUI ERROR: DragonflightUIModulesMixin is nil! Check that Mixin/Modules.mixin.lua is loaded in the .toc before this file.")
+    end
+end
 for k, v in pairs(DragonflightUIModulesMixin) do
     if Module[k] == nil then
         Module[k] = v
