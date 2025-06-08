@@ -400,6 +400,7 @@ function Module:ToggleConfigFrame()
 end
 
 function Module:SlashCommand()
+    print("SlashCommand invoked!") -- Debug log
     Module:ToggleConfigFrame()
 end
 
